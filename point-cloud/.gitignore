@@ -1,0 +1,19 @@
+# 데이터 · 가중치 · 외부 코드 · 환경 · 사진 · 복원 결과는 올리지 않는다
+venv/
+weights/
+third_party/
+work/
+data/
+figs/
+*.npz
+*.pt
+*.pth
+*.safetensors
+*.ply
+*.glb
+*.jpg
+*.jpeg
+*.png
+*.webp
+__pycache__/
+*.pyc
