@@ -1,0 +1,10 @@
+{
+  "name": "hana-light-simulator-private",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Standalone local OSM urban lighting prototype; no SMASH CAU game code",
+  "dependencies": {
+    "three": "0.180.0"
+  }
+}

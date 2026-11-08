@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b1423" />
+  <title>HANA LIGHT SIMULATOR | PRIVATE</title>
+  <link rel="stylesheet" href="./css/app.css" />
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "./vendor/three.module.js",
+      "three/addons/controls/OrbitControls.js": "./vendor/OrbitControls.js"
+    }
+  }
+  </script>
+</head>
+<body>
+  <main id="app">
+    <div id="viewport" aria-label="3D 도시 뷰어"></div>
+    <header class="topbar">
+      <div class="brand"><span class="logo">H</span><div><strong>HANA LIGHT SIMULATOR</strong><small>PRIVATE · 3D 조명 설계 V2</small></div></div>
+      <div class="top-actions">
+        <button type="button" id="btnHome" class="ghost">대구역으로</button>
+        <button type="button" id="btnDay" class="ghost">☀ 낮</button>
+        <button type="button" id="btnNight" class="ghost active">☾ 밤</button>
+      </div>
+    </header>
+    <div class="dataset-banner" id="datasetBanner" role="status">3D 도시 데이터를 불러오는 중…</div>
+    <aside class="panel" aria-label="조명 설정 패널">
+      <h2>조명 설치</h2>
+      <p class="muted smaller" id="guide">아래에서 조명 종류를 선택하세요.</p>
+      <div class="tool-grid">
+        <button type="button" class="tool active" data-tool="line">▰<span>라인조명</span><small>2점 설치</small></button>
+        <button type="button" class="tool" data-tool="indirect">◈<span>간접조명</span><small>3점 설치</small></button>
+        <button type="button" class="tool" data-tool="flood">◉<span>투광기</span><small>2점 설치</small></button>
+      </div>
+      <div class="controls">
+        <label>조명 색상 <input id="color" type="color" value="#64dfff" /></label>
+        <label>밝기 <input id="intensity" type="range" min="1" max="10" value="7" step="1" /><output id="intensityVal">7</output></label>
+        <label>수직·수평 정렬 <input id="snapAxis" type="checkbox" checked /><output>자동</output></label>
+        <label>외벽 돌출 <input id="surfaceOffset" type="range" min="8" max="50" value="18" step="2" /><output id="surfaceOffsetVal">18 cm</output></label>
+        <label>투광기 상향각 <input id="elevation" type="range" min="-25" max="85" value="40" step="5" /><output id="elevationVal">40°</output></label>
+        <label>조사각 (투광기) <input id="angle" type="range" min="15" max="100" value="45" step="5" /><output id="angleVal">45°</output></label>
+      </div>
+      <div id="status" class="status" role="status">시작점을 건물에서 클릭하세요.</div>
+      <div class="metrics">
+        <div><small>라인조명 길이</small><strong id="lineTotal">0.00 m</strong></div>
+        <div><small>간접조명 길이</small><strong id="indirectTotal">0.00 m</strong></div>
+        <div><small>투광기</small><strong id="floodCount">0 대</strong></div>
+      </div>
+      <p class="caution">길이는 3D 모델 기준 추정치입니다. 시공 전 현장 실측이 필요합니다.</p>
+      <h3>설치 목록 <span id="itemCount">0</span></h3>
+      <div id="installList" class="install-list"><span class="muted smaller">아직 설치한 조명이 없습니다.</span></div>
+      <div class="action-grid">
+        <button type="button" id="btnUndo">↶ 되돌리기</button>
+        <button type="button" id="btnDelete">선택 삭제</button>
+        <button type="button" id="btnExport">JSON 저장</button>
+        <button type="button" id="btnImport">JSON 불러오기</button>
+        <button type="button" id="btnClear" class="danger">전체 삭제</button>
+      </div>
+      <input id="fileImport" type="file" accept=".json,application/json" hidden />
+    </aside>
+    <footer class="bottom-help">좌클릭: 조명 지점 선택 · 수직/수평 자동 정렬 · 투광기 상향각 슬라이더 · 드래그: 회전 · 우클릭/두 손가락 이동: 이동 · 휠/핀치: 확대 · ESC: 선택 초기화 <span>© OpenStreetMap contributors (ODbL)</span></footer>
+  </main>
+  <script type="module" src="./js/app.js"></script>
+</body>
+</html>
